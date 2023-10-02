@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.LinkedList;
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
@@ -32,7 +34,19 @@ public class DemoProcessor extends AbstractProcessor {
 
         processingEnv.getMessager().printMessage(NOTE, "Scanned elements: " + processedElements);
 
+        generateFile("Foo");
+        generateFile("Bar");
         return true;
+    }
+
+    private void generateFile(String className) {
+        var packageName = "com.example";
+        try (var file = processingEnv.getFiler().createSourceFile(packageName + "." + className).openWriter()) {
+            file.write("package " + packageName + ";\n\n");
+            file.write("public class " + className + " {}");
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     @Override
