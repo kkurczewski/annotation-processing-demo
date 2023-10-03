@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.10'
+    id 'org.jetbrains.kotlin.kapt' version '1.9.10'
 }
 
 group = 'org.example'
@@ -12,7 +13,7 @@ repositories {
 
 dependencies {
     implementation(project(":processor"))
-    annotationProcessor(project(":processor"))
+    kapt(project(":processor"))
 }
 
 kotlin {
