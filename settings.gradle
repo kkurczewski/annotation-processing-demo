@@ -1,2 +1,3 @@
 rootProject.name = 'demo-annotation-processing'
 include(":processor")
+include(":ksp-processor")

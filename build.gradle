@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.9.10'
-    id 'org.jetbrains.kotlin.kapt' version '1.9.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id 'org.jetbrains.kotlin.kapt' version '1.9.20'
+    id("com.google.devtools.ksp") version "1.9.20-1.0.14"
 }
 
 group = 'org.example'
@@ -14,6 +15,7 @@ repositories {
 dependencies {
     implementation(project(":processor"))
     kapt(project(":processor"))
+    ksp(project(":ksp-processor"))
 }
 
 kotlin {

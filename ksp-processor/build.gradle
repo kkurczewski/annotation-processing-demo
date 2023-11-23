@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.20-1.0.14")
+}
+
+kotlin {
+    jvmToolchain(17)
+}
