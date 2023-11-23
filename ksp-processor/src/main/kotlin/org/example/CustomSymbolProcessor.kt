@@ -20,10 +20,11 @@ open class CustomSymbolProcessor(
     }
 
     override fun finish() {
-        generateFile()
+        generateKtFile()
+        generateResource()
     }
 
-    private fun generateFile() {
+    private fun generateKtFile() {
         val out = environment.codeGenerator.createNewFile(Dependencies(true), "com.example.generated", "KspFile")
         out.use {
             out.write("""
@@ -31,6 +32,18 @@ open class CustomSymbolProcessor(
                     
                     fun foo() {
                        println("Hello world")
+                    }
+                """.trimIndent().toByteArray())
+        }
+    }
+
+    private fun generateResource() {
+        val out = environment.codeGenerator.createNewFileByPath(Dependencies(true), "json/payload", "json")
+        out.use {
+            out.write("""
+                    {
+                        "id": 123,
+                        "name": "Foo"
                     }
                 """.trimIndent().toByteArray())
         }
