@@ -11,8 +11,7 @@ open class CustomSymbolProcessor(
 ) : SymbolProcessor {
     override fun process(resolver: Resolver): List<KSAnnotated> {
         environment.logger.info("Processor started")
-        environment.logger.info(resolver.getAllFiles().toList().toString())
-        resolver.getAllFiles().onEach {
+        resolver.getAllFiles().forEach {
             it.accept(CustomVisitor(environment), mutableListOf())
         }
 
